@@ -1,8 +1,14 @@
-# EatWhat - AI Food Calorie Analyzer
+# EatWhat - AI Food Calorie Analyzer / AI食物热量分析器
+
+[English](#english) | [中文](#chinese)
+
+---
+
+## English
 
 A pure frontend web application that uses Google's Gemini AI to analyze food photos and estimate calories. Track your daily meals and monitor your calorie intake with ease.
 
-## Features
+### Features
 
 - **AI-Powered Analysis**: Upload a photo of your meal and get instant analysis using Google's Gemini Vision API
 - **Calorie Estimation**: Automatically estimates calories for each food item detected
@@ -11,170 +17,183 @@ A pure frontend web application that uses Google's Gemini AI to analyze food pho
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **Privacy First**: All data stored locally in your browser - nothing sent to external servers except for API analysis
 
-## Live Demo
+### Quick Start
 
-Visit the live demo at: [Your GitHub Pages URL]
+1. **Open the app**: Double-click `index.html` or visit your GitHub Pages URL
+2. **Get API Key**: Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+3. **Enter Key**: Paste your API key when prompted
+4. **Upload Photo**: Drag & drop or select a food image
+5. **Analyze**: Click "Analyze Food" button
+6. **View Results**: See detected foods and calories instantly!
 
-## Getting Started
+### Tech Stack
 
-### Prerequisites
+- **Frontend**: Vanilla JavaScript (ES6+), HTML5, CSS3
+- **AI Model**: Google Gemini 3 Flash Preview (`gemini-3-flash-preview`)
+- **Storage**: Browser LocalStorage
+- **Deployment**: GitHub Pages
 
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- A Google Gemini API key (free to obtain)
+### Deployment
 
-### Obtaining a Gemini API Key
-
-1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Sign in with your Google account (or create one)
-3. Click "Create API Key"
-4. Copy your API key
-5. Paste it into the app when prompted
-
-### Local Development
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/eatwhat.git
-   cd eatwhat
-   ```
-
-2. Open `index.html` in your web browser, or use a local server:
-   ```bash
-   # Using Python 3
-   python -m http.server 8000
-
-   # Using Node.js (http-server)
-   npx http-server
-
-   # Using PHP
-   php -S localhost:8000
-   ```
-
-3. Visit `http://localhost:8000` in your browser
-
-## Deployment to GitHub Pages
-
-### Option 1: Using GitHub Web Interface
-
-1. Create a new repository on GitHub named `eatwhat`
-2. Upload all files from this project
-3. Go to Settings > Pages
-4. Select "Deploy from a branch"
-5. Choose "main" branch and "/ (root)" folder
-6. Click Save
-7. Your site will be available at `https://yourusername.github.io/eatwhat`
-
-### Option 2: Using Git Command Line
+This project is ready for GitHub Pages deployment:
 
 ```bash
-# Initialize git repository
-git init
-git add .
-git commit -m "Initial commit: EatWhat app"
-
-# Add remote and push
-git remote add origin https://github.com/yourusername/eatwhat.git
-git branch -M main
-git push -u origin main
-
-# Enable GitHub Pages via GitHub web interface
-# Settings > Pages > Source: Deploy from branch > main > / (root)
+git clone https://github.com/Tony-Stark-marvel/eatwhat.git
+cd eatwhat
+# Open index.html in your browser
 ```
 
-## How It Works
+Your site will be available at: `https://tony-stark-marvel.github.io/eatwhat`
 
-1. **Upload Photo**: Take a photo or upload an image of your meal
-2. **Image Processing**: The image is compressed and converted to base64 format
-3. **AI Analysis**: The image is sent to Google's Gemini API for analysis
-4. **Results Display**: Food items and calorie estimates are displayed
-5. **Save to History**: Optionally save the meal to your local history
-6. **Track Progress**: View your daily and weekly calorie statistics
-
-## File Structure
+### File Structure
 
 ```
 eatwhat/
-├── index.html          # Main HTML file
+├── index.html          # Main application page
 ├── css/
-│   └── style.css       # Styles and design system
+│   └── style.css       # Modern design system
 ├── js/
 │   ├── app.js          # Main application logic
 │   ├── gemini.js       # Gemini API integration
 │   └── storage.js      # LocalStorage management
 ├── assets/
 │   └── icons/          # SVG icons
-├── .nojekyll           # GitHub Pages configuration
 └── README.md           # This file
 ```
 
-## Privacy & Security
+### Privacy & Security
 
-- **API Key**: Stored locally in your browser's localStorage
-- **Meal Data**: All history stored locally - never uploaded to any server
-- **Image Processing**: Images only sent to Google's Gemini API for analysis
-- **No Tracking**: No analytics or tracking scripts included
+- ✅ API keys stored only in browser localStorage
+- ✅ No data sent except to Gemini API for analysis
+- ✅ No tracking or analytics
+- ✅ XSS protection implemented
+- ✅ Input validation on all uploads
 
-## API Usage & Costs
+### Troubleshooting
 
-- Google Gemini API offers a free tier with generous limits
-- Each image analysis consumes API tokens
-- Check [Google AI pricing](https://ai.google.dev/pricing) for current rates
-- Monitor your usage in Google AI Studio
-
-## Browser Support
-
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Troubleshooting
-
-### "Invalid API Key" Error
+**"Invalid API Key" Error**
 - Double-check your API key for typos
 - Ensure you copied the entire key
 - Verify your API key is active in Google AI Studio
 
-### "API Quota Exceeded" Error
-- You've reached your API rate limit
-- Wait a few minutes and try again
-- Check your quota in Google AI Studio
+**"Request Timeout" Error**
+- Check your internet connection
+- Try again later
+- Image may be too large (max 10MB)
 
-### Image Not Analyzing
+**Image Not Analyzing**
 - Ensure image is under 10MB
 - Try a different image format (JPG, PNG, WEBP)
 - Check your internet connection
 
-### History Not Saving
-- Clear browser cache and try again
-- Ensure localStorage is not disabled
-- Check browser storage permissions
+### Future Enhancements
 
-## Future Enhancements
-
-Potential features for future versions:
 - Export data to CSV/JSON
 - Set daily calorie goals
 - Macronutrient breakdown (protein, carbs, fat)
 - Meal categorization (breakfast, lunch, dinner)
-- Photo gallery view
 - Multiple language support
-- Barcode scanning for packaged foods
 
-## Contributing
+### License
 
-Contributions are welcome! Please feel free to submit issues and pull requests.
-
-## License
-
-This project is open source and available under the MIT License.
-
-## Acknowledgments
-
-- Powered by Google's Gemini AI API
-- Built with vanilla JavaScript, HTML5, and CSS3
-- Designed for simplicity and privacy
+MIT License
 
 ---
 
-Made with care for healthy eating habits
+## 中文
+
+一个纯前端Web应用，使用Google的Gemini AI分析食物照片并估算热量。轻松追踪您的每日餐点并监控热量摄入。
+
+### 功能特点
+
+- **AI驱动分析**：上传餐点照片，使用Google Gemini Vision API即时获得分析结果
+- **热量估算**：自动估算检测到的每种食物的热量
+- **餐点历史**：保存并追踪您的餐点记录
+- **统计仪表板**：查看今日和本周的热量总计
+- **响应式设计**：在桌面、平板和移动设备上无缝工作
+- **隐私优先**：所有数据存储在本地浏览器中 - 除了API分析外不会发送到外部服务器
+
+### 快速开始
+
+1. **打开应用**：双击 `index.html` 或访问您的 GitHub Pages 网址
+2. **获取API密钥**：访问 [Google AI Studio](https://makersuite.google.com/app/apikey)
+3. **输入密钥**：在提示框中粘贴您的 API 密钥
+4. **上传照片**：拖拽或选择食物图片
+5. **分析**：点击"分析食物"按钮
+6. **查看结果**：立即看到检测到的食物和热量！
+
+### 技术栈
+
+- **前端**：原生 JavaScript (ES6+)、HTML5、CSS3
+- **AI模型**：Google Gemini 3 Flash Preview (`gemini-3-flash-preview`)
+- **存储**：浏览器 LocalStorage
+- **部署**：GitHub Pages
+
+### 部署
+
+此项目已准备好部署到 GitHub Pages：
+
+```bash
+git clone https://github.com/Tony-Stark-marvel/eatwhat.git
+cd eatwhat
+# 在浏览器中打开 index.html
+```
+
+您的网站将在以下地址可用：`https://tony-stark-marvel.github.io/eatwhat`
+
+### 文件结构
+
+```
+eatwhat/
+├── index.html          # 主应用程序页面
+├── css/
+│   └── style.css       # 现代设计系统
+├── js/
+│   ├── app.js          # 主应用程序逻辑
+│   ├── gemini.js       # Gemini API集成
+│   └── storage.js      # LocalStorage管理
+├── assets/
+│   └── icons/          # SVG图标
+└── README.md           # 本文件
+```
+
+### 隐私与安全
+
+- ✅ API密钥仅存储在浏览器localStorage中
+- ✅ 除API分析外不发送任何数据
+- ✅ 无追踪或分析脚本
+- ✅ 实现XSS防护
+- ✅ 所有上传都有输入验证
+
+### 故障排除
+
+**"API密钥无效"错误**
+- 仔细检查API密钥是否有拼写错误
+- 确保复制了完整的密钥
+- 在Google AI Studio中验证API密钥是否有效
+
+**"请求超时"错误**
+- 检查网络连接
+- 稍后重试
+- 图片可能太大（最大10MB）
+
+**图片无法分析**
+- 确保图片小于10MB
+- 尝试不同的图片格式（JPG、PNG、WEBP）
+- 检查网络连接
+
+### 未来增强
+
+- 导出数据为CSV/JSON
+- 设置每日热量目标
+- 宏量营养素分解（蛋白质、碳水化合物、脂肪）
+- 餐点分类（早餐、午餐、晚餐）
+- 多语言支持
+
+### 许可证
+
+MIT 许可证
+
+---
+
+**Made with ❤️ for healthy eating habits / 为健康饮食习惯精心制作**
