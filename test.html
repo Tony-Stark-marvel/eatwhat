@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatWhat - Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        h2 {
+            color: #333;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .error {
+            color: #F44336;
+            font-weight: bold;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>EatWhat - Functionality Test</h1>
+
+    <div class="test-section">
+        <h2>Test 1: LocalStorage Functions</h2>
+        <button onclick="testSaveMeal()">Save Test Meal</button>
+        <button onclick="testGetHistory()">Get History</button>
+        <button onclick="testClearHistory()">Clear History</button>
+        <pre id="storageResult"></pre>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Image Validation</h2>
+        <input type="file" id="testFileInput" accept="image/*">
+        <button onclick="testValidateImage()">Validate Image</button>
+        <pre id="validationResult"></pre>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Date Formatting</h2>
+        <button onclick="testDateFormat()">Test Date Format</button>
+        <pre id="dateResult"></pre>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Check All Scripts Loaded</h2>
+        <button onclick="checkScriptsLoaded()">Check Scripts</button>
+        <pre id="scriptsResult"></pre>
+    </div>
+
+    <!-- Load the actual app scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/gemini.js"></script>
+
+    <script>
+        // Test storage functions
+        function testSaveMeal() {
+            const testMeal = {
+                imageThumbnail: 'data:image/jpeg;base64,test',
+                foods: [
+                    { name: 'Test Food 1', portion: '100g', calories: 150 },
+                    { name: 'Test Food 2', portion: '200g', calories: 300 }
+                ],
+                totalCalories: 450,
+                timestamp: new Date().toISOString()
+            };
+
+            const result = saveMeal(testMeal);
+            document.getElementById('storageResult').innerHTML =
+                `<span class="${result ? 'success' : 'error'}">Save meal: ${result ? 'SUCCESS' : 'FAILED'}</span>`;
+        }
+
+        function testGetHistory() {
+            const history = getMealHistory();
+            document.getElementById('storageResult').innerHTML +=
+                `\n\nHistory count: ${history.length}\n` +
+                `Today's calories: ${getTodayCalories()}\n` +
+                `Week's calories: ${getWeekCalories()}`;
+        }
+
+        function testClearHistory() {
+            const result = clearHistory();
+            document.getElementById('storageResult').innerHTML =
+                `<span class="${result ? 'success' : 'error'}">Clear history: ${result ? 'SUCCESS' : 'FAILED'}</span>`;
+        }
+
+        // Test image validation
+        function testValidateImage() {
+            const fileInput = document.getElementById('testFileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                document.getElementById('validationResult').innerHTML =
+                    '<span class="error">Please select a file first</span>';
+                return;
+            }
+
+            const result = validateImage(file);
+            document.getElementById('validationResult').innerHTML =
+                `<span class="${result.valid ? 'success' : 'error'}">
+                    Valid: ${result.valid}<br>
+                    Error: ${result.error || 'None'}
+                 </span>`;
+        }
+
+        // Test date formatting
+        function testDateFormat() {
+            const now = new Date().toISOString();
+            const formatted = formatDate(now);
+            document.getElementById('dateResult').textContent =
+                `Current time: ${now}\nFormatted: ${formatted}`;
+        }
+
+        // Check if all scripts loaded
+        function checkScriptsLoaded() {
+            const checks = {
+                'saveMeal': typeof saveMeal === 'function',
+                'getMealHistory': typeof getMealHistory === 'function',
+                'deleteMeal': typeof deleteMeal === 'function',
+                'clearHistory': typeof clearHistory === 'function',
+                'getTodayCalories': typeof getTodayCalories === 'function',
+                'getWeekCalories': typeof getWeekCalories === 'function',
+                'saveApiKey': typeof saveApiKey === 'function',
+                'getApiKey': typeof getApiKey === 'function',
+                'formatDate': typeof formatDate === 'function',
+                'formatCalories': typeof formatCalories === 'function',
+                'analyzeFoodImage': typeof analyzeFoodImage === 'function',
+                'compressImage': typeof compressImage === 'function',
+                'validateImage': typeof validateImage === 'function'
+            };
+
+            let output = '';
+            let allPassed = true;
+
+            for (const [func, exists] of Object.entries(checks)) {
+                const status = exists ? '✓' : '✗';
+                const className = exists ? 'success' : 'error';
+                output += `<span class="${className}">${status} ${func}</span>\n`;
+                if (!exists) allPassed = false;
+            }
+
+            output += `\n\n${allPassed ? 'All functions loaded successfully!' : 'Some functions are missing!'}`;
+            document.getElementById('scriptsResult').innerHTML = output;
+        }
+
+        // Run initial check
+        window.addEventListener('load', () => {
+            checkScriptsLoaded();
+        });
+    </script>
+</body>
+</html>
