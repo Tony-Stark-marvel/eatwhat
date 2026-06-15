@@ -1,10 +1,11 @@
 # EatWhat - AI Food Calorie Analyzer / AI食物热量分析器
 
-[English](#english) | [中文](#chinese)
+[English](#english) | [中文](#chinese-1)
 
 ---
 
-## English
+<a id="english"></a>
+## English 🇺🇸
 
 A pure frontend web application that uses Google's Gemini AI to analyze food photos and estimate calories. Track your daily meals and monitor your calorie intake with ease.
 
@@ -100,7 +101,8 @@ MIT License
 
 ---
 
-## 中文
+<a id="chinese-1"></a>
+## 中文 🇨🇳
 
 一个纯前端Web应用，使用Google的Gemini AI分析食物照片并估算热量。轻松追踪您的每日餐点并监控热量摄入。
 
